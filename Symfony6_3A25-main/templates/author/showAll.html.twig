@@ -1,0 +1,32 @@
+{# Affichage des messages flash #}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<table>
+<tr>
+   <td>Username</td>
+   <td>Email</td>
+   <td>Actions</td>
+</tr>
+{% for i in list %}
+<tr>
+<td>{{ i.username}}</td>
+<td>{{i.email}} </td>
+<td>
+ <a href="{{path('deleteAuthor',{'id':i.id})}}">delete</a> {# path or url  #}
+ <a href="{{path('showAuthorDetails',{'id': i.id})}}">show</a>
+ <a href="{{path('editAuthor',{'id': i.id})}}">Update</a>
+
+</tr>
+{% endfor %}
+</table>
+<a href="{{path('addForm')}}">Add an author</a>
